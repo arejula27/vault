@@ -26,6 +26,7 @@ grep "${TARBALL}" "${MANIFEST}" | sha256sum --check
 popd > /dev/null
 
 tar -xzf "${TMP}/${TARBALL}" -C /opt
+mkdir -p /usr/local/bin
 ln -sf /opt/Sparrow/bin/Sparrow /usr/local/bin/sparrow
 
 # Desktop entry
