@@ -24,7 +24,7 @@ jobs:
       - name: Build vault-base
         uses: blue-build/github-action@v1.11
         with:
-          recipe: recipes/vault-base.yml
+          recipe: vault-base.yml
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
@@ -42,8 +42,8 @@ jobs:
       fail-fast: false
       matrix:
         recipe:
-          - recipes/vault-gnome.yml
-          - recipes/vault-hyprland.yml
+          - vault-gnome.yml
+          - vault-hyprland.yml
     steps:
       - name: Build ${{ matrix.recipe }}
         uses: blue-build/github-action@v1.11
