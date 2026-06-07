@@ -1,0 +1,16 @@
+[Unit]
+Description=Bitcoin Core — regtest
+After=vault-regtest-network.service
+
+[Container]
+Image=ghcr.io/getumbrel/docker-bitcoind:v30.2@sha256:75ad7da4eaa2a56b92e5703ff39fa86aa7b9012c50749ca082f018a761d136cd
+ContainerName=regtest-bitcoin
+Volume=/var/lib/vault/regtest/bitcoin:/data/.bitcoin
+Network=vault-regtest.network:alias=regtest-bitcoin
+
+[Service]
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

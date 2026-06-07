@@ -1,0 +1,17 @@
+[Unit]
+Description=Tor (Bitcoin privacy)
+After=network-online.target vault-main-network.service
+Wants=network-online.target
+
+[Container]
+Image=getumbrel/tor:0.4.7.8@sha256:2ace83f22501f58857fa9b403009f595137fa2e7986c4fda79d82a8119072b6a
+ContainerName=vault-tor
+Environment=HOME=/tmp
+Network=vault-main.network:alias=vault-tor
+
+[Service]
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

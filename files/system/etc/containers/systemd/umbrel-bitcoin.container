@@ -1,0 +1,28 @@
+[Unit]
+Description=Bitcoin Core + Node UI (mainnet, pruned)
+After=network-online.target vault-main-network.service
+Wants=network-online.target
+
+[Container]
+Image=ghcr.io/getumbrel/umbrel-bitcoin:v1.3.0@sha256:a684213f37985b987c07a4d10cc9d04396eb2eb2a25f6b210052bb102950d7fe
+ContainerName=umbrel-bitcoin
+Volume=/var/lib/vault/bitcoin:/data
+PublishPort=3000:3000
+Environment=DEFAULT_CHAIN=main
+Environment=BITCOIND_IP=0.0.0.0
+Environment=BITCOIND_EXTRA_ARGS=-prune=550 -rpcbind=0.0.0.0 -rpcallowip=10.89.0.0/16
+Environment=RPC_PORT=8332
+Environment=RPC_USER=vault
+Environment=RPC_PASS=vaultbitcoin
+Environment=TOR_HOST=vault-tor
+Environment=TOR_SOCKS_PORT=9050
+Environment=TOR_CONTROL_PORT=9051
+Environment=DEVICE_DOMAIN_NAME=localhost
+Network=vault-main.network:alias=umbrel-bitcoin
+
+[Service]
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

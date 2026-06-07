@@ -1,0 +1,20 @@
+[Unit]
+Description=Mempool — MariaDB
+After=vault-main-network.service
+
+[Container]
+Image=docker.io/mariadb:10.11
+ContainerName=mempool-db
+Volume=/var/lib/vault/mempool-db:/var/lib/mysql
+Environment=MYSQL_DATABASE=mempool
+Environment=MYSQL_USER=mempool
+Environment=MYSQL_PASSWORD=mempool
+Environment=MYSQL_ROOT_PASSWORD=mempoolroot
+Network=vault-main.network:alias=mempool-db
+
+[Service]
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

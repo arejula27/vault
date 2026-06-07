@@ -1,0 +1,13 @@
+[Unit]
+Description=Apply dotfiles via stow (one-shot, first login)
+ConditionPathExists=!%h/.config/vault/.dotfiles-applied
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/vault/setup-dotfiles.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target

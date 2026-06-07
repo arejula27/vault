@@ -1,0 +1,17 @@
+[Unit]
+Description=Bitcoin Regtest Dashboard
+After=regtest-electrs.service
+
+[Container]
+Image=coreylphillips/bitcoin-regtest-dashboard:v1.0.3@sha256:f1ccffc2002f107559338f015097e49af7f547eababfcd1f53f0f2bdbd159c88
+ContainerName=regtest-dashboard
+Volume=/var/lib/vault/regtest/bitcoin:/bitcoin/.bitcoin:ro
+PublishPort=3001:3000
+Network=vault-regtest.network:alias=regtest-dashboard
+
+[Service]
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

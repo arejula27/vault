@@ -1,0 +1,18 @@
+[Unit]
+Description=Mempool — Web frontend
+After=mempool-api.service
+
+[Container]
+Image=docker.io/mempool/frontend:latest
+ContainerName=mempool-web
+PublishPort=4080:8080
+Environment=FRONTEND_HTTP_PORT=8080
+Environment=BACKEND_MAINNET_HTTP_HOST=mempool-api
+Network=vault-main.network:alias=mempool-web
+
+[Service]
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

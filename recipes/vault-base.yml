@@ -1,0 +1,43 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: vault-base
+description: Vault OS — shared base (no desktop environment)
+
+base-image: ghcr.io/ublue-os/silverblue-main
+image-version: 44
+
+modules:
+  - type: files
+    files:
+      - source: system
+        destination: /
+
+  - type: dnf
+    install:
+      packages:
+        - neovim
+        - zsh
+        - stow
+        - git
+        - tor
+        - torsocks
+        - just
+        - ripgrep
+        - fd-find
+        - bat
+        - curl
+        - unzip
+        - gnupg2
+        - jq
+        - alacritty
+
+  - type: script
+    scripts:
+      - install-sparrow.sh
+
+  - type: systemd
+    user:
+      enabled:
+        - setup-dotfiles.service
+
+  - type: signing

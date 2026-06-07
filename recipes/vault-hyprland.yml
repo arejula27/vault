@@ -1,0 +1,35 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: vault-hyprland
+description: Vault OS — Hyprland variant
+
+base-image: ghcr.io/arejula27/vault-base
+image-version: latest
+
+modules:
+  - type: dnf
+    repos:
+      copr:
+        - solopasha/hyprland
+    install:
+      packages:
+        - hyprland
+        - waybar
+        - wofi
+        - hyprlock
+        - hyprpaper
+        - mako
+        - grim
+        - slurp
+        - wl-clipboard
+        - xdg-desktop-portal-hyprland
+
+  - type: default-flatpaks
+    configurations:
+      - notify: true
+        scope: system
+        install:
+          - org.mozilla.firefox
+          - com.brave.Browser
+
+  - type: signing

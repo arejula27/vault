@@ -1,0 +1,17 @@
+[Unit]
+Description=Electrs — regtest
+After=regtest-bitcoin.service
+
+[Container]
+Image=getumbrel/electrs:v0.11.0@sha256:0a2c6f573abfd8d724651c6ba1c1f3a9c740219c1cf0f4468043c3342170d8a5
+ContainerName=regtest-electrs
+Volume=/var/lib/vault/regtest/electrs:/data
+Volume=/var/lib/vault/regtest/bitcoin:/data/.bitcoin:ro
+Network=vault-regtest.network:alias=regtest-electrs
+
+[Service]
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Bitcoin Node
+Comment=Bitcoin Core node status and settings
+Exec=flatpak run com.brave.Browser --app=http://localhost:3000
+Icon=vault-bitcoin-node
+Terminal=false
+Type=Application
+Categories=Network;Finance;
+Keywords=bitcoin;node;blockchain;

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Mempool
+Comment=Bitcoin mempool explorer and fee estimator
+Exec=flatpak run com.brave.Browser --app=http://localhost:4080
+Icon=vault-mempool
+Terminal=false
+Type=Application
+Categories=Network;Finance;
+Keywords=bitcoin;mempool;fees;blocks;

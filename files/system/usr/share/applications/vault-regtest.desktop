@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Bitcoin Regtest
+Comment=Bitcoin regtest development dashboard
+Exec=flatpak run com.brave.Browser --app=http://localhost:3001
+Icon=vault-regtest
+Terminal=false
+Type=Application
+Categories=Development;Finance;
+Keywords=bitcoin;regtest;development;testing;

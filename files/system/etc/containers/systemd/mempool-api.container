@@ -1,0 +1,26 @@
+[Unit]
+Description=Mempool — API backend
+After=mempool-db.service umbrel-bitcoin.service
+
+[Container]
+Image=docker.io/mempool/api:latest
+ContainerName=mempool-api
+Environment=MEMPOOL_BACKEND=none
+Environment=CORE_RPC_HOST=umbrel-bitcoin
+Environment=CORE_RPC_PORT=8332
+Environment=CORE_RPC_USERNAME=vault
+Environment=CORE_RPC_PASSWORD=vaultbitcoin
+Environment=DATABASE_ENABLED=true
+Environment=DATABASE_HOST=mempool-db
+Environment=DATABASE_DATABASE=mempool
+Environment=DATABASE_USERNAME=mempool
+Environment=DATABASE_PASSWORD=mempool
+Environment=STATISTICS_ENABLED=true
+Network=vault-main.network:alias=mempool-api
+
+[Service]
+Restart=on-failure
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target
