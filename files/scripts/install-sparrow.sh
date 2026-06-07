@@ -2,7 +2,7 @@
 set -euo pipefail
 
 VERSION=$(curl -fsSL https://api.github.com/repos/sparrowwallet/sparrow/releases/latest | jq -r '.tag_name')
-TARBALL="sparrow-${VERSION}-x86_64.tar.gz"
+TARBALL="sparrowwallet-${VERSION}-x86_64.tar.gz"
 MANIFEST="sparrow-${VERSION}-manifest.txt"
 MANIFEST_SIG="sparrow-${VERSION}-manifest.txt.asc"
 BASE_URL="https://github.com/sparrowwallet/sparrow/releases/download/${VERSION}"
@@ -15,8 +15,7 @@ curl -fsSL "${BASE_URL}/${TARBALL}"      -o "${TMP}/${TARBALL}"
 curl -fsSL "${BASE_URL}/${MANIFEST}"     -o "${TMP}/${MANIFEST}"
 curl -fsSL "${BASE_URL}/${MANIFEST_SIG}" -o "${TMP}/${MANIFEST_SIG}"
 
-gpg --keyserver hkps://keyserver.ubuntu.com \
-    --recv-keys D4D0D3202FC06849A257B38DE94618334C674B40
+curl -fsSL "https://keybase.io/craigraw/pgp_keys.asc" | gpg --import
 
 echo "Verifying GPG signature..."
 gpg --verify "${TMP}/${MANIFEST_SIG}" "${TMP}/${MANIFEST}"
