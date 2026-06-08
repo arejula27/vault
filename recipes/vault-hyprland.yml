@@ -24,12 +24,4 @@ modules:
         - wl-clipboard
         - xdg-desktop-portal-hyprland
 
-  - type: default-flatpaks
-    configurations:
-      - notify: true
-        scope: system
-        install:
-          - org.mozilla.firefox
-          - com.brave.Browser
-
   - type: signing

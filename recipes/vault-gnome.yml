@@ -7,14 +7,16 @@ base-image: ghcr.io/arejula27/vault-base
 image-version: latest
 
 modules:
+  - type: dnf
+    install:
+      packages:
+        - gnome-tweaks
+
   - type: default-flatpaks
     configurations:
       - notify: true
         scope: system
         install:
-          - org.mozilla.firefox
-          - com.brave.Browser
           - org.gnome.Extensions
-          - org.gnome.tweaks
 
   - type: signing
