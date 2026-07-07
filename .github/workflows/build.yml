@@ -22,7 +22,7 @@ jobs:
       id-token: write
     steps:
       - name: Build vault-base
-        uses: blue-build/github-action@v1.11
+        uses: blue-build/github-action@v1.12
         with:
           recipe: vault-base.yml
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
@@ -46,7 +46,7 @@ jobs:
           - vault-hyprland.yml
     steps:
       - name: Build ${{ matrix.recipe }}
-        uses: blue-build/github-action@v1.11
+        uses: blue-build/github-action@v1.12
         with:
           recipe: ${{ matrix.recipe }}
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
